@@ -1,0 +1,36 @@
+//Ace Editor is the editor Synapse X uses. It detects if a script has any errors.
+This uses WinForm.
+//1. Okay, first right click "Form1" then click "Select Form1".
+//2. Now, if you see properties click on the lightning bolt. Now you are in remote event, find "Load" then double click on it.
+//3. Now, you should see "Form1_Load" blah blah blah something related to that.
+//Okay, before you do this, make sure you have downloaded the Ace Editor file. Here is the link: https://bit.ly/2TWptg2
+//Now, find the top right corner and click "Download as ZIP". Then, save it in your "Download" section. Right click the folder and click "Extract Files" then click "Ok".
+//Your files should pop up, ok now go to the windows search bar and search up "repos". Select your exploit folder and then bin > Debug then drag the extracted ace folder inside.
+//4. Open Toolbox and drag webBrowser onto your WinForm. Size it to your preferences.
+//5. Insert this code under Form1_Load between the {
+
+                                                   } like this.
+Code = this.webBrowser1.Navigate(string.Format("file:///{0}ace/AceEditor.html", AppDomain.CurrentDomain.BaseDirectory));
+Should look something like this:
+Form1_Load
+{
+this.webBrowser1.Navigate(string.Format("file:///{0}ace/AceEditor.html", AppDomain.CurrentDomain.BaseDirectory));
+}
+Okay, now run your solution and you should have it. Here are some basic codes for stuff.
+Execute: (Requires you making EasyExploits a module)
+HtmlDocument document = webBrowser1.Document;
+            string scriptName = "GetText";
+            object[] args = new string[0];
+            object obj = document.InvokeScript(scriptName, args);
+            string script = obj.ToString();
+            module.ExecuteScript(script);
+Clear:
+webBrowser1.Document.InvokeScript("SetText", new object[]
+                    {
+                        ""
+                    });
+Any script button:
+webBrowser1.Document.InvokeScript("SetText", new object[]
+                    {
+                        "Insert script here"
+                    });
